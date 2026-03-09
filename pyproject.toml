@@ -1,0 +1,78 @@
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.bandit]
+skips=["B405", "B324", "B410", "B314", "B320"]
+exclude_dirs = ["src/tests", "src\\tests"]
+
+[tool.bandit.assert_used]
+skips=["*_test.py", "*test_*.py"]
+
+[tool.ruff]
+exclude = [
+    "__init__.py",
+]
+line-length = 100
+
+[tool.ruff.lint]
+ignore = [
+    "N818",  #  Exception name should be named with an Error suffix
+    "SIM108",  # Use ternary operator instead of `if`-`else`-block (нечитаемо длинные строки)
+    "D205",  # 1 blank line required between summary line and description
+]
+
+select = [
+    "F",
+    "E",
+    "C90",
+    "I",
+    "N",
+    "UP",
+    "ASYNC",
+    "S",
+    "ICN",
+    "PIE",
+    "T",
+    "Q",
+    "RET",
+    "SIM",
+    "PERF",
+    "PL",
+    "D103", "D2", "D3", "D4",
+]
+
+[tool.ruff.lint.pylint]
+max-args = 9
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 250
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.ruff.lint.flake8-import-conventions.aliases]
+# Declare the default aliases.
+datetime = "dt"
+
+[tool.ruff.lint.per-file-ignores]
+"*test*.py" = [
+    "S",  # выкл bandit для тестов
+    "PLR2004",  # Magic value used in comparison
+    "D"  # игнорируем докстринги для тестов
+]
+"!*/tasks/*" = ["D103"]  # не ингорируем наличие докстринги для тасок
+
+[tool.ruff.lint.isort]
+known-third-party = ["celery"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+docstring-code-line-length = 20
