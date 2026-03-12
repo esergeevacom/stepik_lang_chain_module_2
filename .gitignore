@@ -123,3 +123,6 @@ kuber/sa
 !/loadtest/load.yaml
 /data/*
 celerybeat-schedule
+
+*.faiss
+*.pkl
