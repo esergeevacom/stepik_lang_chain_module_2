@@ -126,3 +126,4 @@ celerybeat-schedule
 
 *.faiss
 *.pkl
+src/lesson_3_3/prepared.jsonl
